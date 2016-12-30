@@ -1,5 +1,6 @@
 # Dota2Api
 An (unfinished) wrapper for Dota related methods of the Steam Web API.
+Note that this is a work in progress, currently you can only request match history and match detail.
 
 ###Usage
 Using the wrapper is very easy, just set your API key once.
