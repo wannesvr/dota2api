@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Abstract class containing the request path and url parameters.
+ * Extended by any request to the Dota2 related methods for the Steam Web API.
+ */
 public abstract class AbstractDota2ApiRequest implements Dota2ApiRequest {
     private final String path;
     private Request.Builder requestBuilder;
@@ -26,11 +30,15 @@ public abstract class AbstractDota2ApiRequest implements Dota2ApiRequest {
         );
     }
 
+    /**
+     * Adds every {@see Parameter} and url to the {@link Request}.
+     * @return A {@link Request} object
+     */
     @Override
     public Request getRequest() {
         try {
             this.urlParam("key", Objects.requireNonNull(Dota2Api.API_KEY, "API Key is null"));
-            this.urlParam("format", Dota2Api.DEFAULT_FORMAT);
+            this.urlParam("format", Dota2Api.FORMAT);
         } catch (NullPointerException e){
             throw new Dota2ApiException(e.getMessage());
         }

@@ -12,6 +12,9 @@ import okhttp3.Response;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * The client send requests to the Steam Web API, and parses them using the {@link Dota2ResponseParser}.
+ */
 @Log4j
 public class Dota2ApiClient {
     private final OkHttpClient client;
@@ -20,7 +23,13 @@ public class Dota2ApiClient {
         client = new OkHttpClient();
     }
 
-    public <T> T send(Dota2ApiRequest request, Class<T> responseClass){
+    /**
+     * Sends the request and returns the response if successful.
+     * @param request the request to send
+     * @param responseClass the class to which the response should be parsed.
+     * @return an object of type T.
+     */
+    public <T> T send(Dota2ApiRequest request, Class<T> responseClass) throws Dota2ApiException {
         try {
             Objects.requireNonNull(request, "Request cannot be null");
             Objects.requireNonNull(responseClass, "Response class cannot be null");

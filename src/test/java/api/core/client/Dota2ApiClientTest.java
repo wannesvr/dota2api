@@ -89,4 +89,26 @@ public class Dota2ApiClientTest {
         //Cleanup
         server.shutdown();
     }
+
+    @Test(expected = Dota2ApiException.class)
+    public void sendRequestWithWrongResultClassShouldThrowException() throws Exception {
+        //Arrange
+        MockWebServer server = new MockWebServer();
+
+        //Response containing 1 match
+        MockResponse matchHistoryResponse = new MockResponse()
+                .addHeader("Content-Type", "application/json; charset=utf-8")
+                .setBody("{ \"result\": { \"status\": 1, \"num_results\": 1, \"total_results\": 1, \"results_remaining\": 0, \"matches\": [ { \"match_id\": 0, \"match_seq_num\": 0, \"start_time\": 0, \"lobby_type\": 0, \"radiant_team_id\": 0, \"dire_team_id\": 0, \"players\": [ { \"account_id\": 0, \"player_slot\": 0, \"hero_id\": 0 }, { \"account_id\": 0, \"player_slot\": 0, \"hero_id\": 0 }, { \"account_id\": 0, \"player_slot\": 0, \"hero_id\": 0 }, { \"account_id\": 0, \"player_slot\": 0, \"hero_id\": 0 }, { \"account_id\": 0, \"player_slot\": 0, \"hero_id\": 0 }, { \"account_id\": 0, \"player_slot\": 0, \"hero_id\": 0 }, { \"account_id\": 0, \"player_slot\": 0, \"hero_id\": 0 }, { \"account_id\": 0, \"player_slot\": 0, \"hero_id\": 0 }, { \"account_id\": 0, \"player_slot\": 0, \"hero_id\": 0 }, { \"account_id\": 0, \"player_slot\": 0, \"hero_id\": 0 } ] } ] } }");
+
+        GetMatchHistoryRequest request = new GetMatchHistoryRequest.Builder().build();
+
+        server.enqueue(matchHistoryResponse);
+        startServer(server, request.getPath());
+
+        //Act
+        client.send(request, MatchDetail.class);
+
+        //Cleanup
+        server.shutdown();
+    }
 }

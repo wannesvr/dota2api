@@ -5,7 +5,7 @@ import api.dota2.model.match.GameMode;
 import api.dota2.model.match.SkillBracket;
 
 /**
- * A wrapper for the call to retrieve Dota 2 match history
+ * Request to /IDOTA2Match_570/GetMatchHistory/v1
  */
 public class GetMatchHistoryRequest extends AbstractDota2ApiRequest {
     private GetMatchHistoryRequest() {
