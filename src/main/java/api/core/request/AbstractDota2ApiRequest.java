@@ -39,6 +39,7 @@ public abstract class AbstractDota2ApiRequest implements Dota2ApiRequest {
         try {
             this.urlParam("key", Objects.requireNonNull(Dota2Api.API_KEY, "API Key is null"));
             this.urlParam("format", Dota2Api.FORMAT);
+            this.urlParam("language", Dota2Api.LANGUAGE);
         } catch (NullPointerException e){
             throw new Dota2ApiException(e.getMessage());
         }

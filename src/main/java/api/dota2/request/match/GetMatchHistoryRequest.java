@@ -1,6 +1,7 @@
-package api.dota2.request;
+package api.dota2.request.match;
 
 import api.core.request.AbstractDota2ApiRequest;
+import api.core.request.Dota2ApiRequestBuilder;
 import api.dota2.model.match.GameMode;
 import api.dota2.model.match.SkillBracket;
 
@@ -15,7 +16,7 @@ public class GetMatchHistoryRequest extends AbstractDota2ApiRequest {
     /**
      * Static builder class to be used to create an instance of {@link GetMatchHistoryRequest}.
      */
-    public static class Builder {
+    public static class Builder implements Dota2ApiRequestBuilder<GetMatchHistoryRequest> {
         private GetMatchHistoryRequest request;
 
         public Builder(){
@@ -115,6 +116,7 @@ public class GetMatchHistoryRequest extends AbstractDota2ApiRequest {
          * Returns the {@code GetMatchHistoryRequest} instance created by the builder.
          * @return a {@link GetMatchHistoryRequest}
          */
+        @Override
         public GetMatchHistoryRequest build(){
             return request;
         }

@@ -1,6 +1,7 @@
-package api.dota2.request;
+package api.dota2.request.match;
 
 import api.core.request.AbstractDota2ApiRequest;
+import api.core.request.Dota2ApiRequestBuilder;
 
 /**
  * Request to /IDOTA2Match_570/GetMatchDetails/v1.
@@ -13,10 +14,8 @@ public class GetMatchDetailRequest extends AbstractDota2ApiRequest {
     /**
      * Static builder class to be used to create an instance of {@link GetMatchDetailRequest}.
      */
-    public static class Builder {
+    public static class Builder implements Dota2ApiRequestBuilder<GetMatchDetailRequest> {
         private final GetMatchDetailRequest request;
-
-        private long matchId;
 
         /**
          * Retrieve details for this match id
@@ -24,11 +23,15 @@ public class GetMatchDetailRequest extends AbstractDota2ApiRequest {
          */
         public Builder(long matchId){
             this.request = new GetMatchDetailRequest();
-            this.matchId = matchId;
+            this.request.urlParam("match_id", matchId);
         }
 
+        /**
+         * Returns the {@code GetMatchDetailRequest} instance created by the builder.
+         * @return a {@link GetMatchDetailRequest}
+         */
+        @Override
         public GetMatchDetailRequest build(){
-            this.request.urlParam("match_id", matchId);
             return request;
         }
     }
