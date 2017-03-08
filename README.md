@@ -7,10 +7,10 @@ Using the wrapper is very easy, just set your API key once.
 Create a client, create a request using the Builder and send it.
 ```java
 
-import api.core.config.*;
-import api.core.*;
-import api.dota2.request.*;
-import api.dota2.model.match.*;
+import com.github.wannesvr.com.github.wannesvr.core.config.*;
+import com.github.wannesvr.com.github.wannesvr.core.*;
+import com.github.wannesvr.com.github.wannesvr.core.request.*;
+import com.github.wannesvr.com.github.wannesvr.core.model.match.*;
 
 class Example {
     public static void main(String[] args){
