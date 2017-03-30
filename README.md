@@ -2,7 +2,7 @@
 An (unfinished) wrapper for Dota related methods of the Steam Web API.
 Note that this is a work in progress and as such not all API methods are available yet.
 
-###Usage
+### Usage
 Using the wrapper is very easy, just set your API key once.
 Create a client, create a request using the Builder and send it.
 ```java
