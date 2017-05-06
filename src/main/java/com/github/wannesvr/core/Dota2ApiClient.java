@@ -1,15 +1,19 @@
 package com.github.wannesvr.core;
 
+import com.github.wannesvr.core.config.Dota2ApiConfig;
 import com.github.wannesvr.core.exception.Dota2ApiException;
 import com.github.wannesvr.core.parser.Dota2JsonResponseParser;
 import com.github.wannesvr.core.parser.Dota2ResponseParser;
 import com.github.wannesvr.core.request.Dota2ApiRequest;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -21,46 +25,44 @@ import java.util.Objects;
 public class Dota2ApiClient {
 
     @Setter
-    private final OkHttpClient client;
+    private Dota2ResponseParser responseParser = new Dota2JsonResponseParser();
 
-    @Setter
-    private Dota2ResponseParser responseParser;
-
-    public Dota2ApiClient() {
-        client = new OkHttpClient();
+    public Dota2ApiClient(String apiKey) {
+        Dota2ApiConfig.API_KEY = apiKey;
     }
 
     /**
      * Sends the request and returns the response if successful, if not it throws a {@link Dota2ApiException}.
-     * @param request the request to send
-     * @param responseClass the class to which the response should be parsed.
+     *
+     * @param request       the request to send
+     * @param responseClass the response class to parse to
      * @return an object of type T.
      */
-    public <T> T send(Dota2ApiRequest request, Class<T> responseClass) throws Dota2ApiException {
+    public <T> T send(Dota2ApiRequest request, Class responseClass) throws Dota2ApiException {
         try {
-            Objects.requireNonNull(this.responseParser, "No response parser set");
             Objects.requireNonNull(request, "Request cannot be null");
             Objects.requireNonNull(responseClass, "Response class cannot be null");
         } catch (NullPointerException e) {
             throw new Dota2ApiException(e.getMessage());
         }
 
-        Request actualRequest = request.getRequest();
-        Call call = this.client.newCall(actualRequest);
-
         try {
-            log.info("Requesting url " + actualRequest.url());
-            Response response = call.execute();
+            HttpClient client = getHttpClient();
+            HttpResponse response = client.execute(new HttpHost("api.steampowered.com"), request.getRequest());
+            int statusCode = response.getStatusLine().getStatusCode();
 
-            if (response.isSuccessful()) {
-                return responseParser.parse(response.body().string(), responseClass);
+            if (statusCode == 200) {
+                return responseParser.parse(EntityUtils.toString(response.getEntity()), responseClass);
             } else {
-                log.warn(String.format("Request failed: %d:%s", response.code(), response.message()));
-                throw new Dota2ApiException(String.format("Couldn't retrieve %s: %s", responseClass.getSimpleName(), response.message()));
+                log.error(String.format("Request failed with status code [%s]", response.getStatusLine().getStatusCode()));
+                throw new Dota2ApiException(String.format("Request failed with status code [%s]", response.getStatusLine().getStatusCode()));
             }
         } catch (IOException e) {
-            log.error(String.format("IOException for request %s: %s", actualRequest.url(), e.getMessage()));
             throw new Dota2ApiException(e.getMessage());
         }
+    }
+
+    HttpClient getHttpClient() {
+        return HttpClients.createDefault();
     }
 }

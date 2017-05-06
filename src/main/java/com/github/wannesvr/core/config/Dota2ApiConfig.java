@@ -3,7 +3,7 @@ package com.github.wannesvr.core.config;
 /**
  * Config class
  */
-public class Dota2Api {
+public class Dota2ApiConfig {
     /**
      * Your Steam Web API KEY
      */

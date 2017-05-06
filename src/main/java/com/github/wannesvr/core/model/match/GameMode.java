@@ -2,6 +2,7 @@ package com.github.wannesvr.core.model.match;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.Getter;
 
 public enum GameMode {
     NONE(0),
@@ -26,10 +27,11 @@ public enum GameMode {
     ONE_VS_ONE_MID_ONLY(21),
     RANKED_MATCHMAKING(22);
 
-    private int gameMode;
+    @Getter
+    private int urlParamValue;
 
-    GameMode(int gameMode) {
-        this.gameMode = gameMode;
+    GameMode(int urlParamValue) {
+        this.urlParamValue = urlParamValue;
     }
 
     @JsonCreator
@@ -62,6 +64,6 @@ public enum GameMode {
 
     @JsonValue
     public int toValue(){
-        return this.gameMode;
+        return this.urlParamValue;
     }
 }

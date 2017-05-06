@@ -1,11 +1,17 @@
 package com.github.wannesvr.core.request;
 
-import com.github.wannesvr.core.config.Dota2Api;
+import com.github.wannesvr.core.config.Dota2ApiConfig;
 import com.github.wannesvr.core.exception.Dota2ApiException;
-import lombok.Getter;
 import lombok.Setter;
-import okhttp3.Request;
+import org.apache.http.HttpRequest;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.message.BasicNameValuePair;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,62 +21,59 @@ import java.util.Objects;
  * Extended by any request to the Dota2 related methods for the Steam Web API.
  */
 public abstract class AbstractDota2ApiRequest implements Dota2ApiRequest {
-
-    @Setter
-    private static String BASE_URL = "http://api.steampowered.com";
     private final String path;
-    private Request.Builder requestBuilder;
-    private List<Parameter> urlParameters;
+    private HttpGet request;
+    private List<NameValuePair> urlParameters;
 
     public AbstractDota2ApiRequest(String path){
-        this.requestBuilder = new Request.Builder();
+        this.request = new HttpGet();
         this.path = path;
         this.urlParameters = new ArrayList<>();
     }
 
-    public void urlParam(String key, Object value){
-        this.urlParameters.add(new Parameter(
-                Objects.requireNonNull(key, "url param key is null"),
-                Objects.requireNonNull(value, String.format("url param value for key %s is null", key)))
-        );
+    public void urlParam(String key, String value){
+        this.urlParameters.add(new BasicNameValuePair(key, value));
+    }
+
+    public void urlParam(String key, int value){
+        this.urlParameters.add(new BasicNameValuePair(key, String.valueOf(value)));
+    }
+
+    public void urlParam(String key, long value){
+        this.urlParameters.add(new BasicNameValuePair(key, String.valueOf(value)));
+    }
+
+    public void urlParam(String key, boolean value){
+        this.urlParameters.add(new BasicNameValuePair(key, value ? "1" : "0"));
     }
 
     /**
-     * Adds every {@see Parameter} and url to the {@link Request}.
-     * @return A {@link Request} object
+     * Adds every {@see Parameter} and url to the {@link HttpGet}.
+     * @return A {@link HttpGet} object
      */
     @Override
-    public Request getRequest() {
+    public HttpRequest getRequest() {
+        URIBuilder uriBuilder = new URIBuilder();
+        uriBuilder.setScheme("https");
+        uriBuilder.setHost("api.steampowered.com");
+        uriBuilder.setPath(this.path);
+
         try {
-            this.urlParam("key", Objects.requireNonNull(Dota2Api.API_KEY, "API Key is null"));
-            this.urlParam("format", Dota2Api.FORMAT);
-            this.urlParam("language", Dota2Api.LANGUAGE);
+            uriBuilder.addParameter("key", Objects.requireNonNull(Dota2ApiConfig.API_KEY, "API Key is null"));
+            uriBuilder.addParameter("format", Dota2ApiConfig.FORMAT);
+            uriBuilder.addParameter("language", Dota2ApiConfig.LANGUAGE);
         } catch (NullPointerException e){
             throw new Dota2ApiException(e.getMessage());
         }
 
-        final StringBuilder urlBuilder = new StringBuilder();
-        urlBuilder.append(BASE_URL);
-        urlBuilder.append(this.path);
+        this.urlParameters.forEach(kv -> uriBuilder.addParameter(kv.getName(), kv.getValue()));
 
-        boolean first = true;
-
-        for (Parameter urlParameter : urlParameters) {
-            if (first) {
-                urlBuilder.append("?");
-                first = false;
-            } else {
-                urlBuilder.append("&");
-            }
-
-            urlBuilder.append(urlParameter);
+        try {
+            this.request.setURI(uriBuilder.build());
+        } catch (URISyntaxException e) {
+            throw new Dota2ApiException("Invalid url format: " + e.getMessage());
         }
 
-        requestBuilder.url(urlBuilder.toString());
-        return requestBuilder.build();
-    }
-
-    public String getPath() {
-        return path;
+        return request;
     }
 }

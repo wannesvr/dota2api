@@ -8,20 +8,20 @@ import java.util.Objects;
 /**
  * Request to /IEconDOTA2_570/GetItemIconPath/v1
  */
-public class GetItemIconPathRequest extends AbstractDota2ApiRequest {
+public class ItemIconPathRequest extends AbstractDota2ApiRequest {
 
-    private GetItemIconPathRequest() {
+    private ItemIconPathRequest() {
         super("/IEconDOTA2_570/GetItemIconPath/v1");
     }
 
     /**
-     * Static builder class to be used to create an instance of {@link GetItemIconPathRequest}.
+     * Static builder class to be used to create an instance of {@link ItemIconPathRequest}.
      */
-    public static class Builder implements Dota2ApiRequestBuilder<GetItemIconPathRequest> {
-        private GetItemIconPathRequest request;
+    public static class Builder implements Dota2ApiRequestBuilder<ItemIconPathRequest> {
+        private ItemIconPathRequest request;
 
         public Builder() {
-            this.request = new GetItemIconPathRequest();
+            this.request = new ItemIconPathRequest();
         }
 
         /**
@@ -40,16 +40,16 @@ public class GetItemIconPathRequest extends AbstractDota2ApiRequest {
          * @return Builder instance
          */
         public Builder itemizedOnly(boolean itemizedOnly){
-            this.request.urlParam("language", itemizedOnly);
+            this.request.urlParam("itemizedonly", itemizedOnly);
             return this;
         }
 
         /**
-         * Returns the {@code GetItemIconPathRequest} instance created by the builder.
-         * @return a {@link GetItemIconPathRequest}
+         * Returns the {@code ItemIconPathRequest} instance created by the builder.
+         * @return a {@link ItemIconPathRequest}
          */
         @Override
-        public GetItemIconPathRequest build() {
+        public ItemIconPathRequest build() {
             return request;
         }
     }

@@ -1,7 +1,7 @@
 package com.github.wannesvr.core.request;
 
-import okhttp3.Request;
+import org.apache.http.HttpRequest;
 
 public interface Dota2ApiRequest {
-    Request getRequest();
+    HttpRequest getRequest();
 }

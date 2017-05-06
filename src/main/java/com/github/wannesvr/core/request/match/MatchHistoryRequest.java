@@ -4,27 +4,43 @@ import com.github.wannesvr.core.request.AbstractDota2ApiRequest;
 import com.github.wannesvr.core.request.Dota2ApiRequestBuilder;
 import com.github.wannesvr.core.model.match.GameMode;
 import com.github.wannesvr.core.model.match.SkillBracket;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Request to /IDOTA2Match_570/GetMatchHistory/v1
  */
-public class GetMatchHistoryRequest extends AbstractDota2ApiRequest {
-    private GetMatchHistoryRequest() {
+@Setter(AccessLevel.PRIVATE)
+@Getter
+public class MatchHistoryRequest extends AbstractDota2ApiRequest {
+    private int heroId;
+    private long accountId;
+    private GameMode gameMode;
+    private SkillBracket skillBracket;
+    private int minPlayers;
+    private long leagueId;
+    private long startAtMatchId;
+    private int matchesRequested;
+    private boolean tournamentGamesOnly;
+
+    private MatchHistoryRequest() {
         super("/IDOTA2Match_570/GetMatchHistory/v1");
     }
 
     /**
-     * Static builder class to be used to create an instance of {@link GetMatchHistoryRequest}.
+     * Static builder class to be used to create an instance of {@link MatchHistoryRequest}.
      */
-    public static class Builder implements Dota2ApiRequestBuilder<GetMatchHistoryRequest> {
-        private GetMatchHistoryRequest request;
+    public static class Builder implements Dota2ApiRequestBuilder<MatchHistoryRequest> {
+        private MatchHistoryRequest request;
 
         public Builder(){
-            this.request = new GetMatchHistoryRequest();
+            this.request = new MatchHistoryRequest();
         }
 
         public Builder heroId(int heroId){
             this.request.urlParam("hero_id", heroId);
+            this.request.setHeroId(heroId);
             return this;
         }
 
@@ -35,6 +51,7 @@ public class GetMatchHistoryRequest extends AbstractDota2ApiRequest {
          */
         public Builder accountId(long accountId){
             this.request.urlParam("account_id", accountId);
+            this.request.setAccountId(accountId);
             return this;
         }
 
@@ -46,7 +63,8 @@ public class GetMatchHistoryRequest extends AbstractDota2ApiRequest {
          * @see GameMode
          */
         public Builder gameMode(GameMode gameMode){
-            this.request.urlParam("game_mode", gameMode);
+            this.request.urlParam("game_mode", gameMode.getUrlParamValue());
+            this.request.setGameMode(gameMode);
             return this;
         }
 
@@ -58,7 +76,8 @@ public class GetMatchHistoryRequest extends AbstractDota2ApiRequest {
          * @see SkillBracket
          */
         public Builder skill(SkillBracket skillBracket){
-            this.request.urlParam("skill", skillBracket);
+            this.request.urlParam("skill", skillBracket.getUrlParamValue());
+            this.request.setSkillBracket(skillBracket);
             return this;
         }
 
@@ -69,6 +88,7 @@ public class GetMatchHistoryRequest extends AbstractDota2ApiRequest {
          */
         public Builder minPlayers(int amount){
             this.request.urlParam("min_players", amount);
+            this.request.setMinPlayers(amount);
             return this;
         }
 
@@ -79,6 +99,7 @@ public class GetMatchHistoryRequest extends AbstractDota2ApiRequest {
          */
         public Builder leagueId(long leagueId){
             this.request.urlParam("league_id", leagueId);
+            this.request.setLeagueId(leagueId);
             return this;
         }
 
@@ -89,6 +110,7 @@ public class GetMatchHistoryRequest extends AbstractDota2ApiRequest {
          */
         public Builder startAtMatchId(long matchId){
             this.request.urlParam("start_at_match_id", matchId);
+            this.request.setStartAtMatchId(matchId);
             return this;
         }
 
@@ -99,6 +121,7 @@ public class GetMatchHistoryRequest extends AbstractDota2ApiRequest {
          */
         public Builder matchesRequested(int amount){
             this.request.urlParam("matches_requested", amount);
+            this.request.setMatchesRequested(amount);
             return this;
         }
 
@@ -108,16 +131,17 @@ public class GetMatchHistoryRequest extends AbstractDota2ApiRequest {
          * @return Builder instance
          */
         public Builder tournamentGamesOnly(boolean tournamentGamesOnly){
-            this.request.urlParam("tournament_games_only", tournamentGamesOnly ? "1" : "0");
+            this.request.urlParam("tournament_games_only", tournamentGamesOnly);
+            this.request.setTournamentGamesOnly(tournamentGamesOnly);
             return this;
         }
 
         /**
-         * Returns the {@code GetMatchHistoryRequest} instance created by the builder.
-         * @return a {@link GetMatchHistoryRequest}
+         * Returns the {@code MatchHistoryRequest} instance created by the builder.
+         * @return a {@link MatchHistoryRequest}
          */
         @Override
-        public GetMatchHistoryRequest build(){
+        public MatchHistoryRequest build(){
             return request;
         }
     }
