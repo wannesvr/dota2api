@@ -14,24 +14,14 @@ import com.github.wannesvr.com.github.wannesvr.core.model.match.*;
 
 class Example {
     public static void main(String[] args){
-        Dota2Api.API_KEY = "Your api key";
+        Dota2ApiClient client = new Dota2ApiClient("API_KEY");
         
-        //Create a client
-        Dota2ApiClient client = new Dota2ApiClient();
+        MatchHistoryRequest request = new MatchHistoryRequest.Builder()
+           .gameMode(GameMode.ALL_PICK)
+           .matchesRequested(5)
+           .build();
         
-        //Create a request using the Builder
-        GetMatchHistoryRequest request = new GetMatchHistoryRequest.Builder()
-            .accountId(1)
-            .gameMode(GameMode.CAPTAINS_MODE)
-            .matchesRequested(5)
-            .build();
-        
-        MatchHistoryResult response = client.send(request, MatchHistoryResult.class);
-        List<MatchHistoryDetail> history = response.getMatchHistory();
-        
-        for (MatchHistoryDetail match : history) {
-            System.out.println("Match id: " + match.getMatchId());
-        }
+        MatchHistory matchHistory = client.send(request, MatchHistory.class);
     }
 }
 ```
