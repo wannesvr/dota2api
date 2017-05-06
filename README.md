@@ -1,10 +1,10 @@
 # Dota2Api
-An (unfinished) wrapper for Dota related methods of the Steam Web API.
-Note that this is a work in progress and as such not all API methods are available yet.
+A wrapper for all Dota related methods of the Steam Web API.
+Note that this is a work in progress and not all API methods are available yet.
 
 ### Usage
-Using the wrapper is very easy, just set your API key once.
-Create a client, create a request using the Builder and send it.
+Using the wrapper is very easy as seen in the example below.
+Create a client, create a request using the Builder and send it!
 ```java
 
 import com.github.wannesvr.com.github.wannesvr.core.config.*;
