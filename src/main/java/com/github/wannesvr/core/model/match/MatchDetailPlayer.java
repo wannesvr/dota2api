@@ -4,10 +4,12 @@ import com.github.wannesvr.core.model.hero.AbilityUpgrade;
 import com.github.wannesvr.core.model.hero.Unit;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Data
 public class MatchDetailPlayer {
     @JsonProperty("account_id")
     private long accountId;

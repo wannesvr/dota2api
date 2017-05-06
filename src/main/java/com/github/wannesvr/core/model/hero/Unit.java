@@ -2,6 +2,7 @@ package com.github.wannesvr.core.model.hero;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.Getter;
 
 @Data
 public class Unit {
