@@ -1,19 +1,20 @@
 package com.github.wannesvr.core.request.match;
 
-import com.github.wannesvr.core.request.AbstractDota2ApiRequest;
-import com.github.wannesvr.core.request.Dota2ApiRequestBuilder;
 import com.github.wannesvr.core.model.match.GameMode;
 import com.github.wannesvr.core.model.match.SkillBracket;
+import com.github.wannesvr.core.request.AbstractSteamApiRequest;
+import com.github.wannesvr.core.request.SteamApiRequestBuilder;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * Request to /IDOTA2Match_570/GetMatchHistory/v1
+ * Returns a list of matches, filterable by various parameters.
  */
 @Setter(AccessLevel.PRIVATE)
 @Getter
-public class MatchHistoryRequest extends AbstractDota2ApiRequest {
+public class MatchHistoryRequest extends AbstractSteamApiRequest {
     private int heroId;
     private long accountId;
     private GameMode gameMode;
@@ -31,7 +32,7 @@ public class MatchHistoryRequest extends AbstractDota2ApiRequest {
     /**
      * Static builder class to be used to create an instance of {@link MatchHistoryRequest}.
      */
-    public static class Builder implements Dota2ApiRequestBuilder<MatchHistoryRequest> {
+    public static class Builder implements SteamApiRequestBuilder<MatchHistoryRequest> {
         private MatchHistoryRequest request;
 
         public Builder(){

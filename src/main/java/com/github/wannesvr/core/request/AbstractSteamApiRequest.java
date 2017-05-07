@@ -2,15 +2,12 @@ package com.github.wannesvr.core.request;
 
 import com.github.wannesvr.core.config.Dota2ApiConfig;
 import com.github.wannesvr.core.exception.Dota2ApiException;
-import lombok.Setter;
 import org.apache.http.HttpRequest;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.message.BasicNameValuePair;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +17,12 @@ import java.util.Objects;
  * Abstract class containing the request path and url parameters.
  * Extended by any request to the Dota2 related methods for the Steam Web API.
  */
-public abstract class AbstractDota2ApiRequest implements Dota2ApiRequest {
+public abstract class AbstractSteamApiRequest implements Dota2ApiRequest {
     private final String path;
     private HttpGet request;
     private List<NameValuePair> urlParameters;
 
-    public AbstractDota2ApiRequest(String path){
+    public AbstractSteamApiRequest(String path){
         this.request = new HttpGet();
         this.path = path;
         this.urlParameters = new ArrayList<>();

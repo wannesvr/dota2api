@@ -1,4 +1,4 @@
-package com.github.wannesvr.base;
+package com.github.wannesvr;
 
 import com.github.wannesvr.core.config.Dota2ApiConfig;
 import org.junit.Before;

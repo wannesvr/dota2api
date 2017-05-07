@@ -1,13 +1,14 @@
 package com.github.wannesvr.core.request.match;
 
-import com.github.wannesvr.core.request.AbstractDota2ApiRequest;
-import com.github.wannesvr.core.request.Dota2ApiRequestBuilder;
+import com.github.wannesvr.core.request.AbstractSteamApiRequest;
+import com.github.wannesvr.core.request.SteamApiRequestBuilder;
 import lombok.Getter;
 
 /**
  * Request to /IDOTA2Match_570/GetMatchDetails/v1.
+ * Returns information about a particular match.
  */
-public class MatchDetailRequest extends AbstractDota2ApiRequest {
+public class MatchDetailRequest extends AbstractSteamApiRequest {
     @Getter
     private long matchId;
 
@@ -19,7 +20,7 @@ public class MatchDetailRequest extends AbstractDota2ApiRequest {
     /**
      * Static builder class to be used to create an instance of {@link MatchDetailRequest}.
      */
-    public static class Builder implements Dota2ApiRequestBuilder<MatchDetailRequest> {
+    public static class Builder implements SteamApiRequestBuilder<MatchDetailRequest> {
         private final MatchDetailRequest request;
 
         /**

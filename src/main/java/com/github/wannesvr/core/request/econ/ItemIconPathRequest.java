@@ -1,14 +1,21 @@
 package com.github.wannesvr.core.request.econ;
 
-import com.github.wannesvr.core.request.AbstractDota2ApiRequest;
-import com.github.wannesvr.core.request.Dota2ApiRequestBuilder;
-
-import java.util.Objects;
+import com.github.wannesvr.core.model.item.ItemIconType;
+import com.github.wannesvr.core.request.AbstractSteamApiRequest;
+import com.github.wannesvr.core.request.SteamApiRequestBuilder;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Request to /IEconDOTA2_570/GetItemIconPath/v1
+ * @see com.github.wannesvr.core.model.item.ItemIcon
  */
-public class ItemIconPathRequest extends AbstractDota2ApiRequest {
+@Setter(AccessLevel.PRIVATE)
+@Getter
+public class ItemIconPathRequest extends AbstractSteamApiRequest {
+    private String iconName;
+    private ItemIconType iconType;
 
     private ItemIconPathRequest() {
         super("/IEconDOTA2_570/GetItemIconPath/v1");
@@ -17,7 +24,7 @@ public class ItemIconPathRequest extends AbstractDota2ApiRequest {
     /**
      * Static builder class to be used to create an instance of {@link ItemIconPathRequest}.
      */
-    public static class Builder implements Dota2ApiRequestBuilder<ItemIconPathRequest> {
+    public static class Builder implements SteamApiRequestBuilder<ItemIconPathRequest> {
         private ItemIconPathRequest request;
 
         public Builder() {
@@ -25,22 +32,24 @@ public class ItemIconPathRequest extends AbstractDota2ApiRequest {
         }
 
         /**
-         * The language to provide hero names in.
-         * @param language the language
+         * The item icon name to get the CDN path of
+         * @param name The icon name
          * @return Builder instance
          */
-        public Builder language(String language){
-            this.request.urlParam("language", Objects.requireNonNull(language));
+        public Builder iconName(String name) {
+            this.request.urlParam("icon_name", name);
+            this.request.setIconName(name);
             return this;
         }
 
         /**
-         * If true, return a list of itemized heroes only.
-         * @param itemizedOnly whether you want itemized heroes only
+         * The type of image you want.
+         * @param type the {@link ItemIconType}
          * @return Builder instance
          */
-        public Builder itemizedOnly(boolean itemizedOnly){
-            this.request.urlParam("itemizedonly", itemizedOnly);
+        public Builder iconType(ItemIconType type) {
+            this.request.urlParam("icon_type", type.getUrlParamValue());
+            this.request.setIconType(type);
             return this;
         }
 

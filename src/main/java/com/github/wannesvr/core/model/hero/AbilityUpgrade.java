@@ -2,7 +2,7 @@ package com.github.wannesvr.core.model.hero;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -10,6 +10,7 @@ import java.util.Date;
  * Object detailing a player's ability upgrade.
  */
 @Data
+@NoArgsConstructor
 public class AbilityUpgrade {
     /**
      * ID of the ability upgraded.

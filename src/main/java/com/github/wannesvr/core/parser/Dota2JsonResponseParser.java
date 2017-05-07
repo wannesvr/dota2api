@@ -1,8 +1,8 @@
 package com.github.wannesvr.core.parser;
 
-import com.github.wannesvr.core.exception.Dota2ApiException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.wannesvr.core.exception.Dota2ApiException;
 import lombok.extern.log4j.Log4j;
 
 /**
@@ -29,8 +29,7 @@ public class Dota2JsonResponseParser implements Dota2ResponseParser {
             JsonNode result = node.get("result");
             return (T) mapper.convertValue(result, clazz);
         } catch (Exception e) {
-            log.error("Couldn't parse " + json + " to " + clazz.getName());
-            throw new Dota2ApiException("Couldn't parse " + json + " to " + clazz.getName());
+            throw new Dota2ApiException("Couldn't parse JSON to " + clazz.getName());
         }
     }
 }

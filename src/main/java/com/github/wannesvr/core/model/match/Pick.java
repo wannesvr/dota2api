@@ -1,11 +1,13 @@
 package com.github.wannesvr.core.model.match;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * A list of the picks and bans in the match, if the game mode is Captains Mode.
  */
 @Data
+@NoArgsConstructor
 public class Pick {
     /**
      * Whether this entry is a pick (true) or a ban (false).

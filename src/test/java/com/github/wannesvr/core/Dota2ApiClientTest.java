@@ -5,14 +5,14 @@ import com.github.wannesvr.core.exception.Dota2ApiException;
 import com.github.wannesvr.core.model.match.MatchDetail;
 import com.github.wannesvr.core.model.match.MatchHistory;
 import com.github.wannesvr.core.parser.Dota2ResponseParser;
-import com.github.wannesvr.core.request.AbstractDota2ApiRequest;
+import com.github.wannesvr.core.request.AbstractSteamApiRequest;
 import com.github.wannesvr.core.request.match.MatchDetailRequest;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.junit.Test;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ public class Dota2ApiClientTest {
     private Dota2ApiClient client;
 
     @Mock
-    private AbstractDota2ApiRequest dota2RequestMock;
+    private AbstractSteamApiRequest dota2RequestMock;
 
     @Mock
     private HttpClient httpClientMock;

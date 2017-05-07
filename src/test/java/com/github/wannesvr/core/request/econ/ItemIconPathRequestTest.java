@@ -1,6 +1,7 @@
 package com.github.wannesvr.core.request.econ;
 
-import com.github.wannesvr.base.BaseTest;
+import com.github.wannesvr.BaseTest;
+import com.github.wannesvr.core.model.item.ItemIconType;
 import com.github.wannesvr.testhelpers.UrlParamHelper;
 import org.junit.Test;
 
@@ -12,13 +13,13 @@ public class ItemIconPathRequestTest extends BaseTest {
     public void testGetItemIconPathRequest() {
         ItemIconPathRequest itemIconPathRequest = new ItemIconPathRequest
                 .Builder()
-                .itemizedOnly(false)
-                .language("en")
+                .iconName("iconName")
+                .iconType(ItemIconType.INGAME)
                 .build();
 
         UrlParamHelper helper = new UrlParamHelper(itemIconPathRequest.getRequest());
 
-        assertThat(helper.getParameterValueByKey("itemizedonly"), is("0"));
-        assertThat(helper.getParameterValueByKey("language"), is("en"));
+        assertThat(helper.getParameterValueByKey("icon_name"), is("iconName"));
+        assertThat(helper.getParameterValueByKey("icon_type"), is("2"));
     }
 }

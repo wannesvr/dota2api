@@ -2,9 +2,10 @@ package com.github.wannesvr.core.model.hero;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class Unit {
     @JsonProperty("unitname")
     private String unitName;

@@ -1,6 +1,6 @@
 package com.github.wannesvr.core.request.match;
 
-import com.github.wannesvr.base.BaseTest;
+import com.github.wannesvr.BaseTest;
 import com.github.wannesvr.core.model.match.GameMode;
 import com.github.wannesvr.core.model.match.SkillBracket;
 import com.github.wannesvr.testhelpers.UrlParamHelper;
