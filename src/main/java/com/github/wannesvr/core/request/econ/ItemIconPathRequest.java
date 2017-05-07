@@ -9,6 +9,7 @@ import lombok.Setter;
 
 /**
  * Request to /IEconDOTA2_570/GetItemIconPath/v1
+ *
  * @see com.github.wannesvr.core.model.item.ItemIcon
  */
 @Setter(AccessLevel.PRIVATE)
@@ -33,6 +34,7 @@ public class ItemIconPathRequest extends AbstractSteamApiRequest {
 
         /**
          * The item icon name to get the CDN path of
+         *
          * @param name The icon name
          * @return Builder instance
          */
@@ -44,6 +46,7 @@ public class ItemIconPathRequest extends AbstractSteamApiRequest {
 
         /**
          * The type of image you want.
+         *
          * @param type the {@link ItemIconType}
          * @return Builder instance
          */
@@ -55,6 +58,7 @@ public class ItemIconPathRequest extends AbstractSteamApiRequest {
 
         /**
          * Returns the {@code ItemIconPathRequest} instance created by the builder.
+         *
          * @return a {@link ItemIconPathRequest}
          */
         @Override

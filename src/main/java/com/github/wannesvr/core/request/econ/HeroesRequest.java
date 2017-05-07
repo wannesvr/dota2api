@@ -9,6 +9,7 @@ import lombok.Setter;
 /**
  * Request to /IEconDOTA2_570/GetHeroes/v1
  * Returns a list of heroes within Dota 2.
+ *
  * @see com.github.wannesvr.core.model.hero.HeroList
  */
 @Setter(AccessLevel.PRIVATE)
@@ -34,10 +35,11 @@ public class HeroesRequest extends AbstractSteamApiRequest {
 
         /**
          * The language to provide hero names in.
+         *
          * @param language the language
          * @return Builder instance
          */
-        public Builder language(String language){
+        public Builder language(String language) {
             this.request.urlParam("language", language);
             this.request.setLanguage(language);
             return this;
@@ -45,10 +47,11 @@ public class HeroesRequest extends AbstractSteamApiRequest {
 
         /**
          * If true, return a list of itemized heroes only.
+         *
          * @param itemizedOnly whether you want itemized heroes only
          * @return Builder instance
          */
-        public Builder itemizedOnly(boolean itemizedOnly){
+        public Builder itemizedOnly(boolean itemizedOnly) {
             this.request.urlParam("itemizedonly", itemizedOnly);
             this.request.setItemizedOnly(itemizedOnly);
             return this;
@@ -56,6 +59,7 @@ public class HeroesRequest extends AbstractSteamApiRequest {
 
         /**
          * Returns the {@code HeroesRequest} instance created by the builder.
+         *
          * @return a {@link HeroesRequest}
          */
         @Override

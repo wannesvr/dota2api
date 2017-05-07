@@ -6,6 +6,7 @@ import com.github.wannesvr.core.request.SteamApiRequestBuilder;
 /**
  * Request to /IEconDOTA2_570/GetGameItems/v1
  * Returns a list of Dota 2 In-game items
+ *
  * @see com.github.wannesvr.core.model.item.GameItemList
  */
 public class GameItemsRequest extends AbstractSteamApiRequest {
@@ -18,10 +19,12 @@ public class GameItemsRequest extends AbstractSteamApiRequest {
      * Static builder class to be used to create an instance of {@link GameItemsRequest}.
      */
     public static class Builder implements SteamApiRequestBuilder<GameItemsRequest> {
-        public Builder() {}
+        public Builder() {
+        }
 
         /**
          * Returns the {@code GameItemsRequest} instance created by the builder.
+         *
          * @return a {@link GameItemsRequest}
          */
         @Override

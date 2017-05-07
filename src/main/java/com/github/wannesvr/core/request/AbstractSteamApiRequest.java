@@ -22,30 +22,31 @@ public abstract class AbstractSteamApiRequest implements Dota2ApiRequest {
     private HttpGet request;
     private List<NameValuePair> urlParameters;
 
-    public AbstractSteamApiRequest(String path){
+    public AbstractSteamApiRequest(String path) {
         this.request = new HttpGet();
         this.path = path;
         this.urlParameters = new ArrayList<>();
     }
 
-    public void urlParam(String key, String value){
+    public void urlParam(String key, String value) {
         this.urlParameters.add(new BasicNameValuePair(key, value));
     }
 
-    public void urlParam(String key, int value){
+    public void urlParam(String key, int value) {
         this.urlParameters.add(new BasicNameValuePair(key, String.valueOf(value)));
     }
 
-    public void urlParam(String key, long value){
+    public void urlParam(String key, long value) {
         this.urlParameters.add(new BasicNameValuePair(key, String.valueOf(value)));
     }
 
-    public void urlParam(String key, boolean value){
+    public void urlParam(String key, boolean value) {
         this.urlParameters.add(new BasicNameValuePair(key, value ? "1" : "0"));
     }
 
     /**
      * Adds every {@see Parameter} and url to the {@link HttpGet}.
+     *
      * @return A {@link HttpGet} object
      */
     @Override
@@ -59,7 +60,7 @@ public abstract class AbstractSteamApiRequest implements Dota2ApiRequest {
             uriBuilder.addParameter("key", Objects.requireNonNull(Dota2ApiConfig.API_KEY, "API Key is null"));
             uriBuilder.addParameter("format", Dota2ApiConfig.FORMAT);
             uriBuilder.addParameter("language", Dota2ApiConfig.LANGUAGE);
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             throw new Dota2ApiException(e.getMessage());
         }
 

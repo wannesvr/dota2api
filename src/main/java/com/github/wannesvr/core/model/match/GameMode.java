@@ -35,35 +35,55 @@ public enum GameMode {
     }
 
     @JsonCreator
-    public static GameMode forValue(int i){
-        switch (i){
-            case 1: return ALL_PICK;
-            case 2: return CAPTAINS_MODE;
-            case 3: return RANDOM_DRAFT;
-            case 4: return SINGLE_DRAFT;
-            case 5: return ALL_RANDOM;
-            case 6: return INTRO;
-            case 7: return DIRETIDE;
-            case 8: return REVERSE_CAPTAINS_MODE;
-            case 9: return THE_GREEVILING;
-            case 10: return TUTORIAL;
-            case 11: return MID_ONLY;
-            case 12: return LEAST_PLAYED;
-            case 13: return NEW_PLAYER_POOL;
-            case 14: return COMPENDIUM_MATCHMAKING;
-            case 15: return CO_OP_VS_BOTS;
-            case 16: return CAPTAINS_DRAFT;
-            case 18: return ABILITY_DRAFT;
-            case 20: return ALL_RANDOM_DEATHMATCH;
-            case 21: return ONE_VS_ONE_MID_ONLY;
-            case 22: return RANKED_MATCHMAKING;
+    public static GameMode forValue(int i) {
+        switch (i) {
+            case 1:
+                return ALL_PICK;
+            case 2:
+                return CAPTAINS_MODE;
+            case 3:
+                return RANDOM_DRAFT;
+            case 4:
+                return SINGLE_DRAFT;
+            case 5:
+                return ALL_RANDOM;
+            case 6:
+                return INTRO;
+            case 7:
+                return DIRETIDE;
+            case 8:
+                return REVERSE_CAPTAINS_MODE;
+            case 9:
+                return THE_GREEVILING;
+            case 10:
+                return TUTORIAL;
+            case 11:
+                return MID_ONLY;
+            case 12:
+                return LEAST_PLAYED;
+            case 13:
+                return NEW_PLAYER_POOL;
+            case 14:
+                return COMPENDIUM_MATCHMAKING;
+            case 15:
+                return CO_OP_VS_BOTS;
+            case 16:
+                return CAPTAINS_DRAFT;
+            case 18:
+                return ABILITY_DRAFT;
+            case 20:
+                return ALL_RANDOM_DEATHMATCH;
+            case 21:
+                return ONE_VS_ONE_MID_ONLY;
+            case 22:
+                return RANKED_MATCHMAKING;
         }
 
         return NONE;
     }
 
     @JsonValue
-    public int toValue(){
+    public int toValue() {
         return this.urlParamValue;
     }
 }

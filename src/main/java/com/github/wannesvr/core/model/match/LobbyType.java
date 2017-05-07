@@ -22,24 +22,33 @@ public enum LobbyType {
     }
 
     @JsonCreator
-    public static LobbyType forValue(int i){
-        switch (i){
-            case 0: return PUBLIC_MATCHMAKING;
-            case 1: return PRACTISE;
-            case 2: return TOURNAMENT;
-            case 3: return TUTORIAL;
-            case 4: return CO_OP_WITH_BOTS;
-            case 5: return TEAM_MATCH;
-            case 6: return SOLO_QUEUE;
-            case 7: return RANKED_MATCHMAKING;
-            case 8: return ONE_VS_ONE_SOLO_MID;
+    public static LobbyType forValue(int i) {
+        switch (i) {
+            case 0:
+                return PUBLIC_MATCHMAKING;
+            case 1:
+                return PRACTISE;
+            case 2:
+                return TOURNAMENT;
+            case 3:
+                return TUTORIAL;
+            case 4:
+                return CO_OP_WITH_BOTS;
+            case 5:
+                return TEAM_MATCH;
+            case 6:
+                return SOLO_QUEUE;
+            case 7:
+                return RANKED_MATCHMAKING;
+            case 8:
+                return ONE_VS_ONE_SOLO_MID;
         }
 
         return INVALID;
     }
 
     @JsonValue
-    public int toValue(){
+    public int toValue() {
         return this.lobbyType;
     }
 }

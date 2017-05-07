@@ -15,10 +15,9 @@ public class Dota2JsonResponseParser implements Dota2ResponseParser {
     private final ObjectMapper mapper = new ObjectMapper();
 
     /**
-     *
-     * @param json the json string
+     * @param json  the json string
      * @param clazz the class to convert to
-     * @param <T> type information
+     * @param <T>   type information
      * @return an object of type T
      * @throws Dota2ApiException if parsing fails
      */

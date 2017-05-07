@@ -46,11 +46,11 @@ public class Dota2ApiClientTest {
 
     @Mock
     private Dota2ResponseParser responseParserMock;
-    
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        
+
         client = spy(new Dota2ApiClient("api_key"));
         client.setResponseParser(responseParserMock);
 
@@ -62,7 +62,7 @@ public class Dota2ApiClientTest {
         try {
             client.send(null, Object.class);
             fail();
-        } catch (Dota2ApiException e){
+        } catch (Dota2ApiException e) {
             assertThat(e.getMessage(), is("Request cannot be null"));
         }
     }
@@ -72,7 +72,7 @@ public class Dota2ApiClientTest {
         try {
             client.send(new MatchDetailRequest.Builder(-1).build(), null);
             fail();
-        } catch (Dota2ApiException e){
+        } catch (Dota2ApiException e) {
             assertThat(e.getMessage(), is("Response class cannot be null"));
         }
     }
@@ -85,7 +85,7 @@ public class Dota2ApiClientTest {
         try {
             client.send(new MatchDetailRequest.Builder(-1).build(), MatchDetail.class);
             fail();
-        } catch (Dota2ApiException e){
+        } catch (Dota2ApiException e) {
             assertThat(e.getMessage(), is("API Key is null"));
         }
     }

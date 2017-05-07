@@ -25,19 +25,21 @@ public class MatchDetailRequest extends AbstractSteamApiRequest {
 
         /**
          * Retrieve details for this match id
+         *
          * @param matchId Match id
          */
-        public Builder(long matchId){
+        public Builder(long matchId) {
             this.request = new MatchDetailRequest(matchId);
             this.request.urlParam("match_id", matchId);
         }
 
         /**
          * Returns the {@code MatchDetailRequest} instance created by the builder.
+         *
          * @return a {@link MatchDetailRequest}
          */
         @Override
-        public MatchDetailRequest build(){
+        public MatchDetailRequest build() {
             return request;
         }
     }

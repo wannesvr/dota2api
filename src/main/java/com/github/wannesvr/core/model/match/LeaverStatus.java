@@ -19,21 +19,27 @@ public enum LeaverStatus {
     }
 
     @JsonCreator
-    public static LeaverStatus forValue(int i){
-        switch (i){
-            case 1: return DISCONNECTED;
-            case 2: return DISCONNECTED_TOO_LONG;
-            case 3: return ABANDONED;
-            case 4: return AFK;
-            case 5: return NEVER_CONNECTED;
-            case 6: return NEVER_CONNECTED_TOO_LONG;
+    public static LeaverStatus forValue(int i) {
+        switch (i) {
+            case 1:
+                return DISCONNECTED;
+            case 2:
+                return DISCONNECTED_TOO_LONG;
+            case 3:
+                return ABANDONED;
+            case 4:
+                return AFK;
+            case 5:
+                return NEVER_CONNECTED;
+            case 6:
+                return NEVER_CONNECTED_TOO_LONG;
         }
 
         return NONE;
     }
 
     @JsonValue
-    public int toValue(){
+    public int toValue() {
         return this.leaverStatus;
     }
 }

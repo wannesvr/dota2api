@@ -35,11 +35,11 @@ public class MatchHistoryRequest extends AbstractSteamApiRequest {
     public static class Builder implements SteamApiRequestBuilder<MatchHistoryRequest> {
         private MatchHistoryRequest request;
 
-        public Builder(){
+        public Builder() {
             this.request = new MatchHistoryRequest();
         }
 
-        public Builder heroId(int heroId){
+        public Builder heroId(int heroId) {
             this.request.urlParam("hero_id", heroId);
             this.request.setHeroId(heroId);
             return this;
@@ -47,10 +47,11 @@ public class MatchHistoryRequest extends AbstractSteamApiRequest {
 
         /**
          * Retrieve games for this account id
+         *
          * @param accountId Steam account Id
          * @return Builder instance
          */
-        public Builder accountId(long accountId){
+        public Builder accountId(long accountId) {
             this.request.urlParam("account_id", accountId);
             this.request.setAccountId(accountId);
             return this;
@@ -58,12 +59,12 @@ public class MatchHistoryRequest extends AbstractSteamApiRequest {
 
         /**
          * Retrieve games with this gamemode only
+         *
          * @param gameMode The gamemode to search for
          * @return Builder instance
-         *
          * @see GameMode
          */
-        public Builder gameMode(GameMode gameMode){
+        public Builder gameMode(GameMode gameMode) {
             this.request.urlParam("game_mode", gameMode.getUrlParamValue());
             this.request.setGameMode(gameMode);
             return this;
@@ -71,12 +72,12 @@ public class MatchHistoryRequest extends AbstractSteamApiRequest {
 
         /**
          * Skill bracket for the matches (Ignored by Steam Web API if an account ID is specified).
+         *
          * @param skillBracket The skillbracket
          * @return Builder instance
-         *
          * @see SkillBracket
          */
-        public Builder skill(SkillBracket skillBracket){
+        public Builder skill(SkillBracket skillBracket) {
             this.request.urlParam("skill", skillBracket.getUrlParamValue());
             this.request.setSkillBracket(skillBracket);
             return this;
@@ -84,10 +85,11 @@ public class MatchHistoryRequest extends AbstractSteamApiRequest {
 
         /**
          * Specify the minimum amount of player in a match for the match to be returned.
+         *
          * @param amount The amount of players
          * @return Builder instance
          */
-        public Builder minPlayers(int amount){
+        public Builder minPlayers(int amount) {
             this.request.urlParam("min_players", amount);
             this.request.setMinPlayers(amount);
             return this;
@@ -95,10 +97,11 @@ public class MatchHistoryRequest extends AbstractSteamApiRequest {
 
         /**
          * Search for matches from this league.
+         *
          * @param leagueId The league id
          * @return Builder instance
          */
-        public Builder leagueId(long leagueId){
+        public Builder leagueId(long leagueId) {
             this.request.urlParam("league_id", leagueId);
             this.request.setLeagueId(leagueId);
             return this;
@@ -106,10 +109,11 @@ public class MatchHistoryRequest extends AbstractSteamApiRequest {
 
         /**
          * Search for matches equal to or older than the match with this id.
+         *
          * @param matchId The match id
          * @return Builder instance
          */
-        public Builder startAtMatchId(long matchId){
+        public Builder startAtMatchId(long matchId) {
             this.request.urlParam("start_at_match_id", matchId);
             this.request.setStartAtMatchId(matchId);
             return this;
@@ -117,10 +121,11 @@ public class MatchHistoryRequest extends AbstractSteamApiRequest {
 
         /**
          * Specify the amount of matches to include in results (default: 25).
+         *
          * @param amount amount of matches in result
          * @return Builder instance
          */
-        public Builder matchesRequested(int amount){
+        public Builder matchesRequested(int amount) {
             this.request.urlParam("matches_requested", amount);
             this.request.setMatchesRequested(amount);
             return this;
@@ -128,10 +133,11 @@ public class MatchHistoryRequest extends AbstractSteamApiRequest {
 
         /**
          * Whether to limit results to tournament matches. (0 = false, 1 = true)
+         *
          * @param tournamentGamesOnly true if you want tournament games only
          * @return Builder instance
          */
-        public Builder tournamentGamesOnly(boolean tournamentGamesOnly){
+        public Builder tournamentGamesOnly(boolean tournamentGamesOnly) {
             this.request.urlParam("tournament_games_only", tournamentGamesOnly);
             this.request.setTournamentGamesOnly(tournamentGamesOnly);
             return this;
@@ -139,10 +145,11 @@ public class MatchHistoryRequest extends AbstractSteamApiRequest {
 
         /**
          * Returns the {@code MatchHistoryRequest} instance created by the builder.
+         *
          * @return a {@link MatchHistoryRequest}
          */
         @Override
-        public MatchHistoryRequest build(){
+        public MatchHistoryRequest build() {
             return request;
         }
     }

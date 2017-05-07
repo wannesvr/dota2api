@@ -17,7 +17,8 @@ public class CustomRequest extends AbstractSteamApiRequest {
 
         /**
          * Add an url query parameter with an int value
-         * @param name The name of the parameter
+         *
+         * @param name  The name of the parameter
          * @param value The value of the parameter
          * @return Builder instance
          */
@@ -28,7 +29,8 @@ public class CustomRequest extends AbstractSteamApiRequest {
 
         /**
          * Add an url query parameter with long value
-         * @param name The name of the parameter
+         *
+         * @param name  The name of the parameter
          * @param value The value of the parameter
          * @return Builder instance
          */
@@ -39,7 +41,8 @@ public class CustomRequest extends AbstractSteamApiRequest {
 
         /**
          * Add an url query parameter with a boolean value
-         * @param name The name of the parameter
+         *
+         * @param name  The name of the parameter
          * @param value The value of the parameter
          * @return Builder instance
          */
@@ -50,7 +53,8 @@ public class CustomRequest extends AbstractSteamApiRequest {
 
         /**
          * Add an url query parameter with a String value
-         * @param name The name of the parameter
+         *
+         * @param name  The name of the parameter
          * @param value The value of the parameter
          * @return Builder instance
          */

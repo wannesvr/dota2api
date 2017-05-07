@@ -15,18 +15,21 @@ public enum ItemIconType {
     }
 
     @JsonCreator
-    public static ItemIconType forValue(int i){
-        switch (i){
-            case 0: return NORMAL;
-            case 1: return LARGE;
-            case 2: return INGAME;
+    public static ItemIconType forValue(int i) {
+        switch (i) {
+            case 0:
+                return NORMAL;
+            case 1:
+                return LARGE;
+            case 2:
+                return INGAME;
         }
 
         return INGAME;
     }
 
     @JsonValue
-    public int toValue(){
+    public int toValue() {
         return this.urlParamValue;
     }
 }
