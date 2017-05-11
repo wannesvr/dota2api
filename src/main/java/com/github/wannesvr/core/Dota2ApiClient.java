@@ -4,14 +4,12 @@ import com.github.wannesvr.core.config.Dota2ApiConfig;
 import com.github.wannesvr.core.exception.Dota2ApiException;
 import com.github.wannesvr.core.parser.Dota2JsonResponseParser;
 import com.github.wannesvr.core.parser.Dota2ResponseParser;
-import com.github.wannesvr.core.request.Dota2ApiRequest;
-import lombok.NoArgsConstructor;
+import com.github.wannesvr.core.request.AbstractSteamApiRequest;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
@@ -38,7 +36,7 @@ public class Dota2ApiClient {
      * @param responseClass the response class to parse to
      * @return an object of type T.
      */
-    public <T> T send(Dota2ApiRequest request, Class responseClass) throws Dota2ApiException {
+    public <T> T send(AbstractSteamApiRequest request, Class responseClass) throws Dota2ApiException {
         try {
             Objects.requireNonNull(request, "Request cannot be null");
             Objects.requireNonNull(responseClass, "Response class cannot be null");

@@ -16,7 +16,7 @@ import java.util.Objects;
 /**
  * Abstract class containing the request path and url parameters.
  */
-public abstract class AbstractSteamApiRequest implements Dota2ApiRequest {
+public abstract class AbstractSteamApiRequest {
     private final String path;
     private HttpGet request;
     private List<NameValuePair> urlParameters;
@@ -48,7 +48,6 @@ public abstract class AbstractSteamApiRequest implements Dota2ApiRequest {
      *
      * @return A {@link HttpGet} object
      */
-    @Override
     public HttpRequest getRequest() {
         URIBuilder uriBuilder = new URIBuilder();
         uriBuilder.setScheme("https");
