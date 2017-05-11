@@ -9,6 +9,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class GameItemList {
-    @JsonProperty("item")
+    @JsonProperty("items")
     private List<GameItem> items;
 }

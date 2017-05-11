@@ -15,7 +15,6 @@ import java.util.Objects;
 
 /**
  * Abstract class containing the request path and url parameters.
- * Extended by any request to the Dota2 related methods for the Steam Web API.
  */
 public abstract class AbstractSteamApiRequest implements Dota2ApiRequest {
     private final String path;

@@ -14,7 +14,4 @@ import java.util.List;
 public class HeroList {
     @JsonProperty("heroes")
     private List<Hero> heroes;
-
-    @JsonProperty("count")
-    private int count;
 }
