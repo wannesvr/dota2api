@@ -12,8 +12,7 @@ public class ItemIconPathRequestTest extends BaseTest {
     @Test
     public void testGetItemIconPathRequest() {
         ItemIconPathRequest itemIconPathRequest = new ItemIconPathRequest
-                .Builder()
-                .iconName("iconName")
+                .Builder("iconName")
                 .iconType(ItemIconType.INGAME)
                 .build();
 

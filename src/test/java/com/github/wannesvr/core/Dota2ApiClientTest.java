@@ -2,7 +2,6 @@ package com.github.wannesvr.core;
 
 import com.github.wannesvr.core.config.Dota2ApiConfig;
 import com.github.wannesvr.core.exception.Dota2ApiException;
-import com.github.wannesvr.core.model.match.MatchDetail;
 import com.github.wannesvr.core.model.match.MatchHistory;
 import com.github.wannesvr.core.parser.Dota2ResponseParser;
 import com.github.wannesvr.core.request.AbstractSteamApiRequest;
@@ -60,20 +59,10 @@ public class Dota2ApiClientTest {
     @Test
     public void sendWithNullRequestShouldThrowException() {
         try {
-            client.send(null, Object.class);
+            client.send(null);
             fail();
         } catch (Dota2ApiException e) {
             assertThat(e.getMessage(), is("Request cannot be null"));
-        }
-    }
-
-    @Test
-    public void sendWithNullResponseClassShouldThrowException() {
-        try {
-            client.send(new MatchDetailRequest.Builder(-1).build(), null);
-            fail();
-        } catch (Dota2ApiException e) {
-            assertThat(e.getMessage(), is("Response class cannot be null"));
         }
     }
 
@@ -83,7 +72,7 @@ public class Dota2ApiClientTest {
         Dota2ApiConfig.API_KEY = null;
 
         try {
-            client.send(new MatchDetailRequest.Builder(-1).build(), MatchDetail.class);
+            client.send(new MatchDetailRequest.Builder(-1).build());
             fail();
         } catch (Dota2ApiException e) {
             assertThat(e.getMessage(), is("API Key is null"));
@@ -95,6 +84,7 @@ public class Dota2ApiClientTest {
         MatchHistory matchHistoryMock = mock(MatchHistory.class);
 
         when(dota2RequestMock.getRequest()).thenReturn(httpRequestMock);
+        when(dota2RequestMock.getResponseClass()).thenReturn(MatchHistory.class);
         when(client.getHttpClient()).thenReturn(httpClientMock);
         when(httpClientMock.execute(any(HttpHost.class), any(HttpRequest.class))).thenReturn(httpResponseMock);
         when(httpResponseMock.getEntity()).thenReturn(httpEntityMock);
@@ -102,7 +92,7 @@ public class Dota2ApiClientTest {
         when(statusLineMock.getStatusCode()).thenReturn(200);
         when(responseParserMock.parse(any(String.class), any(Class.class))).thenReturn(matchHistoryMock);
 
-        MatchHistory response = client.send(dota2RequestMock, MatchHistory.class);
+        MatchHistory response = client.send(dota2RequestMock);
 
         verify(dota2RequestMock).getRequest();
         verify(httpClientMock).execute(any(HttpHost.class), same(httpRequestMock));

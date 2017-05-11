@@ -1,5 +1,6 @@
 package com.github.wannesvr.core.request.match;
 
+import com.github.wannesvr.core.model.match.MatchDetail;
 import com.github.wannesvr.core.request.AbstractSteamApiRequest;
 import com.github.wannesvr.core.request.SteamApiRequestBuilder;
 import lombok.Getter;
@@ -15,6 +16,11 @@ public class MatchDetailRequest extends AbstractSteamApiRequest {
     private MatchDetailRequest(long matchId) {
         super("/IDOTA2Match_570/GetMatchDetails/v1");
         this.matchId = matchId;
+    }
+
+    @Override
+    public Class getResponseClass() {
+        return MatchDetail.class;
     }
 
     /**

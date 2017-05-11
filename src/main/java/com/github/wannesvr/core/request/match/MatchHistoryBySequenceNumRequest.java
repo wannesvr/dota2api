@@ -1,5 +1,6 @@
 package com.github.wannesvr.core.request.match;
 
+import com.github.wannesvr.core.model.match.MatchHistoryBySequenceList;
 import com.github.wannesvr.core.request.AbstractSteamApiRequest;
 import com.github.wannesvr.core.request.SteamApiRequestBuilder;
 import lombok.AccessLevel;
@@ -9,6 +10,7 @@ import lombok.Setter;
 /**
  * Request to //IDOTA2Match_570/GetMatchHistoryBySequenceNum/v1.
  * Returns match history ordered by sequence number.
+ * @see com.github.wannesvr.core.model.match.MatchDetail
  */
 @Setter(AccessLevel.PRIVATE)
 @Getter
@@ -18,6 +20,11 @@ public class MatchHistoryBySequenceNumRequest extends AbstractSteamApiRequest {
 
     public MatchHistoryBySequenceNumRequest() {
         super("/IDOTA2Match_570/GetMatchHistoryBySequenceNum/v1");
+    }
+
+    @Override
+    public Class getResponseClass() {
+        return MatchHistoryBySequenceList.class;
     }
 
     public static class Builder implements SteamApiRequestBuilder<MatchHistoryBySequenceNumRequest> {

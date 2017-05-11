@@ -1,6 +1,7 @@
 package com.github.wannesvr.core.request.match;
 
 import com.github.wannesvr.core.model.match.GameMode;
+import com.github.wannesvr.core.model.match.MatchHistory;
 import com.github.wannesvr.core.model.match.SkillBracket;
 import com.github.wannesvr.core.request.AbstractSteamApiRequest;
 import com.github.wannesvr.core.request.SteamApiRequestBuilder;
@@ -27,6 +28,11 @@ public class MatchHistoryRequest extends AbstractSteamApiRequest {
 
     private MatchHistoryRequest() {
         super("/IDOTA2Match_570/GetMatchHistory/v1");
+    }
+
+    @Override
+    public Class getResponseClass() {
+        return MatchHistory.class;
     }
 
     /**

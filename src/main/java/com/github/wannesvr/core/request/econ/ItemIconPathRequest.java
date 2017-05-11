@@ -1,5 +1,6 @@
 package com.github.wannesvr.core.request.econ;
 
+import com.github.wannesvr.core.model.item.ItemIconPath;
 import com.github.wannesvr.core.model.item.ItemIconType;
 import com.github.wannesvr.core.request.AbstractSteamApiRequest;
 import com.github.wannesvr.core.request.SteamApiRequestBuilder;
@@ -22,26 +23,21 @@ public class ItemIconPathRequest extends AbstractSteamApiRequest {
         super("/IEconDOTA2_570/GetItemIconPath/v1");
     }
 
+    @Override
+    public Class getResponseClass() {
+        return ItemIconPath.class;
+    }
+
     /**
      * Static builder class to be used to create an instance of {@link ItemIconPathRequest}.
      */
     public static class Builder implements SteamApiRequestBuilder<ItemIconPathRequest> {
         private ItemIconPathRequest request;
 
-        public Builder() {
+        public Builder(String iconName) {
             this.request = new ItemIconPathRequest();
-        }
-
-        /**
-         * The item icon name to get the CDN path of
-         *
-         * @param name The icon name
-         * @return Builder instance
-         */
-        public Builder iconName(String name) {
-            this.request.urlParam("icon_name", name);
-            this.request.setIconName(name);
-            return this;
+            this.request.urlParam("iconname", iconName);
+            this.request.setIconName(iconName);
         }
 
         /**

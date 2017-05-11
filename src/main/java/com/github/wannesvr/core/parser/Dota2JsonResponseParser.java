@@ -36,4 +36,15 @@ public class Dota2JsonResponseParser implements Dota2ResponseParser {
             throw new Dota2ApiException("Couldn't parse JSON to " + clazz.getName());
         }
     }
+
+    @Override
+    public String parseError(String json) throws Dota2ApiException {
+        try {
+            JsonNode node = mapper.readTree(json);
+            JsonNode result = node.get("result");
+            return result.get("error").asText();
+        } catch (Exception e) {
+            throw new Dota2ApiException("Couldn't parse error JSON: " + e.getMessage());
+        }
+    }
 }

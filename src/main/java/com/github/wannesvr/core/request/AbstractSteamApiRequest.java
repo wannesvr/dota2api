@@ -72,4 +72,6 @@ public abstract class AbstractSteamApiRequest {
 
         return request;
     }
+
+    public abstract Class getResponseClass();
 }

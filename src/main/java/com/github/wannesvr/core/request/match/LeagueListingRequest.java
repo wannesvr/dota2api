@@ -1,5 +1,6 @@
 package com.github.wannesvr.core.request.match;
 
+import com.github.wannesvr.core.model.league.LeagueList;
 import com.github.wannesvr.core.request.AbstractSteamApiRequest;
 import com.github.wannesvr.core.request.SteamApiRequestBuilder;
 import lombok.AccessLevel;
@@ -14,6 +15,11 @@ import lombok.Setter;
 public class LeagueListingRequest extends AbstractSteamApiRequest {
     private LeagueListingRequest() {
         super("/IDOTA2Match_570/GetLeagueListing/v1/");
+    }
+
+    @Override
+    public Class getResponseClass() {
+        return LeagueList.class;
     }
 
     /**

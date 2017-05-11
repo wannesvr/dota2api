@@ -5,13 +5,14 @@ import com.github.wannesvr.testhelpers.UrlParamHelper;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.isA;
 import static org.junit.Assert.assertThat;
 
 public class CustomRequestTest extends BaseTest {
 
     @Test
     public void testCustomRequest() {
-        CustomRequest customRequest = new CustomRequest.Builder("/MyCustomRequestPath")
+        CustomRequest customRequest = new CustomRequest.Builder("/MyCustomRequestPath", Class.class)
                 .withParameter("trueBoolean", true)
                 .withParameter("falseBoolean", false)
                 .withParameter("string", "stringValue")
@@ -24,6 +25,7 @@ public class CustomRequestTest extends BaseTest {
         String url = customRequest.getRequest().getRequestLine().getUri().split("\\?")[0];
 
         assertThat(url, is("https://api.steampowered.com/MyCustomRequestPath"));
+        assertThat(customRequest.getResponseClass(), isA(Class.class));
         assertThat(helper.getParameterValueByKey("trueBoolean"), is("1"));
         assertThat(helper.getParameterValueByKey("falseBoolean"), is("0"));
         assertThat(helper.getParameterValueByKey("string"), is("stringValue"));
@@ -33,7 +35,7 @@ public class CustomRequestTest extends BaseTest {
 
     @Test
     public void testCustomRequestWithPathWithoutLeadingSlash() {
-        CustomRequest customRequest = new CustomRequest.Builder("MyCustomRequestPath").build();
+        CustomRequest customRequest = new CustomRequest.Builder("MyCustomRequestPath", Class.class).build();
 
         String url = customRequest.getRequest().getRequestLine().getUri().split("\\?")[0];
 

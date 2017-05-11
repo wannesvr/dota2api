@@ -1,5 +1,6 @@
 package com.github.wannesvr.core.request.econ;
 
+import com.github.wannesvr.core.model.item.GameItemList;
 import com.github.wannesvr.core.request.AbstractSteamApiRequest;
 import com.github.wannesvr.core.request.SteamApiRequestBuilder;
 
@@ -13,6 +14,11 @@ public class GameItemsRequest extends AbstractSteamApiRequest {
 
     private GameItemsRequest() {
         super("/IEconDOTA2_570/GetGameItems/v1");
+    }
+
+    @Override
+    public Class getResponseClass() {
+        return GameItemList.class;
     }
 
     /**

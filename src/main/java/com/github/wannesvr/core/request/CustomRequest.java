@@ -4,15 +4,28 @@ package com.github.wannesvr.core.request;
  * Class to create a custom request to the Steam Web API.
  */
 public class CustomRequest extends AbstractSteamApiRequest {
-    public CustomRequest(String path) {
+    private Class responseClass;
+
+    /**
+     * Constructor.
+     * @param path The request path.
+     * @param responseClass The class to transform the response to (the result property is removed before parsing so you don't have to include this in your response class).
+     */
+    public CustomRequest(String path, Class responseClass) {
         super(path);
+        this.responseClass = responseClass;
+    }
+
+    @Override
+    public Class getResponseClass() {
+        return responseClass;
     }
 
     public static class Builder implements SteamApiRequestBuilder<CustomRequest> {
         private CustomRequest request;
 
-        public Builder(String path) {
-            this.request = new CustomRequest(path.startsWith("/") ? path : "/" + path);
+        public Builder(String path, Class responseClass) {
+            this.request = new CustomRequest(path.startsWith("/") ? path : "/" + path, responseClass);
         }
 
         /**

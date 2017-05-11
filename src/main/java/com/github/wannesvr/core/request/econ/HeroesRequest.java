@@ -1,5 +1,6 @@
 package com.github.wannesvr.core.request.econ;
 
+import com.github.wannesvr.core.model.hero.HeroList;
 import com.github.wannesvr.core.request.AbstractSteamApiRequest;
 import com.github.wannesvr.core.request.SteamApiRequestBuilder;
 import lombok.AccessLevel;
@@ -20,6 +21,10 @@ public class HeroesRequest extends AbstractSteamApiRequest {
 
     private HeroesRequest() {
         super("/IEconDOTA2_570/GetHeroes/v1");
+    }
+
+    public Class<HeroList> getResponseClass() {
+        return HeroList.class;
     }
 
     /**

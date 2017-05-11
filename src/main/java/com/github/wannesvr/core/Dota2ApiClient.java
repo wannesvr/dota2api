@@ -33,13 +33,11 @@ public class Dota2ApiClient {
      * Sends the request and returns the response if successful, if not it throws a {@link Dota2ApiException}.
      *
      * @param request       the request to send
-     * @param responseClass the response class to parse to
      * @return an object of type T.
      */
-    public <T> T send(AbstractSteamApiRequest request, Class responseClass) throws Dota2ApiException {
+    public <T> T send(AbstractSteamApiRequest request) throws Dota2ApiException {
         try {
             Objects.requireNonNull(request, "Request cannot be null");
-            Objects.requireNonNull(responseClass, "Response class cannot be null");
         } catch (NullPointerException e) {
             throw new Dota2ApiException(e.getMessage());
         }
@@ -49,13 +47,16 @@ public class Dota2ApiClient {
             HttpResponse response = client.execute(new HttpHost("api.steampowered.com"), request.getRequest());
             int statusCode = response.getStatusLine().getStatusCode();
 
+            log.info("Request to " + request.getRequest().getRequestLine().getUri());
+
             if (statusCode == 200) {
-                return responseParser.parse(EntityUtils.toString(response.getEntity()), responseClass);
+                return responseParser.parse(EntityUtils.toString(response.getEntity()), request.getResponseClass());
             } else {
-                log.error(String.format("Request failed with status code [%s]", response.getStatusLine().getStatusCode()));
-                throw new Dota2ApiException(String.format("Request failed with status code [%s]", response.getStatusLine().getStatusCode()));
+                String error = responseParser.parseError(EntityUtils.toString(response.getEntity()));
+                throw new Dota2ApiException(String.format("Request failed with status code [%s]: %s", response.getStatusLine().getStatusCode(), error));
             }
         } catch (IOException e) {
+            log.warn("Couldn't connect to the Steam API: " + e.getMessage());
             throw new Dota2ApiException(e.getMessage());
         }
     }
