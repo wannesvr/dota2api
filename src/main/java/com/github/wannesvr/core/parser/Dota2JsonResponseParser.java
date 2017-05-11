@@ -1,5 +1,6 @@
 package com.github.wannesvr.core.parser;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.wannesvr.core.exception.Dota2ApiException;
@@ -13,6 +14,10 @@ import lombok.extern.log4j.Log4j;
 @SuppressWarnings("unchecked")
 public class Dota2JsonResponseParser implements Dota2ResponseParser {
     private final ObjectMapper mapper = new ObjectMapper();
+
+    public Dota2JsonResponseParser() {
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
 
     /**
      * @param json  the json string
