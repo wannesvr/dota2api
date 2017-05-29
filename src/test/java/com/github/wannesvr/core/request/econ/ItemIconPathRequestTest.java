@@ -18,7 +18,7 @@ public class ItemIconPathRequestTest extends BaseTest {
 
         UrlParamHelper helper = new UrlParamHelper(itemIconPathRequest.getRequest());
 
-        assertThat(helper.getParameterValueByKey("icon_name"), is("iconName"));
-        assertThat(helper.getParameterValueByKey("icon_type"), is("2"));
+        assertThat(helper.getParameterValueByKey("iconname"), is("iconName"));
+        assertThat(helper.getParameterValueByKey("icontype"), is("2"));
     }
 }

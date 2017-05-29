@@ -47,7 +47,7 @@ public class ItemIconPathRequest extends AbstractSteamApiRequest {
          * @return Builder instance
          */
         public Builder iconType(ItemIconType type) {
-            this.request.urlParam("icon_type", type.getUrlParamValue());
+            this.request.urlParam("icontype", type.getUrlParamValue());
             this.request.setIconType(type);
             return this;
         }

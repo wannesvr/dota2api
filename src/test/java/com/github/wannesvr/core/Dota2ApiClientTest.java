@@ -41,6 +41,9 @@ public class Dota2ApiClientTest {
     private StatusLine statusLineMock;
 
     @Mock
+    private RequestLine requestLineMock;
+
+    @Mock
     private HttpEntity httpEntityMock;
 
     @Mock
@@ -85,16 +88,19 @@ public class Dota2ApiClientTest {
 
         when(dota2RequestMock.getRequest()).thenReturn(httpRequestMock);
         when(dota2RequestMock.getResponseClass()).thenReturn(MatchHistory.class);
+        when(httpRequestMock.getRequestLine()).thenReturn(requestLineMock);
+        when(requestLineMock.getUri()).thenReturn("url for logging");
         when(client.getHttpClient()).thenReturn(httpClientMock);
         when(httpClientMock.execute(any(HttpHost.class), any(HttpRequest.class))).thenReturn(httpResponseMock);
         when(httpResponseMock.getEntity()).thenReturn(httpEntityMock);
         when(httpResponseMock.getStatusLine()).thenReturn(statusLineMock);
         when(statusLineMock.getStatusCode()).thenReturn(200);
+        when(statusLineMock.getStatusCode()).thenReturn(200);
         when(responseParserMock.parse(any(String.class), any(Class.class))).thenReturn(matchHistoryMock);
 
         MatchHistory response = client.send(dota2RequestMock);
 
-        verify(dota2RequestMock).getRequest();
+        verify(dota2RequestMock, times(2)).getRequest();
         verify(httpClientMock).execute(any(HttpHost.class), same(httpRequestMock));
         verify(httpResponseMock).getStatusLine();
         verify(statusLineMock).getStatusCode();
