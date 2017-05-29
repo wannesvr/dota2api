@@ -1,4 +1,4 @@
-package com.github.wannesvr.core.model.league;
+package com.github.wannesvr.core.model.league.live;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class LeagueGameList {
+public class LiveLeagueGameList {
     @JsonProperty("games")
-    private List<LeagueGame> leagueGames;
+    private List<LiveLeagueGame> leagueGames;
 }
