@@ -7,6 +7,7 @@ import com.github.wannesvr.core.parser.Dota2ResponseParser;
 import com.github.wannesvr.core.request.AbstractSteamApiRequest;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -19,7 +20,7 @@ import java.util.Objects;
 /**
  * The client send requests to the Steam Web API, and parses them using the {@link Dota2JsonResponseParser}.
  */
-@Log4j
+@Slf4j
 public class Dota2ApiClient {
 
     @Setter
