@@ -5,12 +5,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.wannesvr.core.exception.Dota2ApiException;
 import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class containing a single utility method to parse the Steam Web API responses.
  */
 
-@Log4j
+@Slf4j
 @SuppressWarnings("unchecked")
 public class Dota2JsonResponseParser implements Dota2ResponseParser {
     private final ObjectMapper mapper = new ObjectMapper();
