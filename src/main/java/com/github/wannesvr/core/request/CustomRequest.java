@@ -22,7 +22,7 @@ public class CustomRequest extends AbstractSteamApiRequest {
     }
 
     public static class Builder implements SteamApiRequestBuilder<CustomRequest> {
-        private CustomRequest request;
+        private final CustomRequest request;
 
         public Builder(String path, Class responseClass) {
             this.request = new CustomRequest(path.startsWith("/") ? path : "/" + path, responseClass);

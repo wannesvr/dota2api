@@ -44,16 +44,16 @@ public class Dota2ApiClient {
         }
 
         try {
-            HttpClient client = getHttpClient();
-            HttpResponse response = client.execute(new HttpHost("api.steampowered.com"), request.getRequest());
-            int statusCode = response.getStatusLine().getStatusCode();
+            var client = getHttpClient();
+            var response = client.execute(new HttpHost("api.steampowered.com"), request.getRequest());
+            var statusCode = response.getStatusLine().getStatusCode();
 
             log.info("Request to " + request.getRequest().getRequestLine().getUri());
 
             if (statusCode == 200) {
                 return responseParser.parse(EntityUtils.toString(response.getEntity()), request.getResponseClass());
             } else {
-                String error = responseParser.parseError(EntityUtils.toString(response.getEntity()));
+                var error = responseParser.parseError(EntityUtils.toString(response.getEntity()));
                 throw new Dota2ApiException(String.format("Request failed with status code [%s]: %s", response.getStatusLine().getStatusCode(), error));
             }
         } catch (IOException e) {
