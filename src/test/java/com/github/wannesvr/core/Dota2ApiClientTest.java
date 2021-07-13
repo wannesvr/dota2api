@@ -8,8 +8,8 @@ import com.github.wannesvr.core.request.AbstractSteamApiRequest;
 import com.github.wannesvr.core.request.match.MatchDetailRequest;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -17,7 +17,7 @@ import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.same;
 import static org.mockito.Mockito.*;
@@ -49,7 +49,7 @@ public class Dota2ApiClientTest {
     @Mock
     private Dota2ResponseParser responseParserMock;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
