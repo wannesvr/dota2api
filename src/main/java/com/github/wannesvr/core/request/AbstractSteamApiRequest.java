@@ -18,8 +18,8 @@ import java.util.Objects;
  */
 public abstract class AbstractSteamApiRequest {
     private final String path;
-    private HttpGet request;
-    private List<NameValuePair> urlParameters;
+    private final HttpGet request;
+    private final List<NameValuePair> urlParameters;
 
     public AbstractSteamApiRequest(String path) {
         this.request = new HttpGet();
@@ -49,7 +49,7 @@ public abstract class AbstractSteamApiRequest {
      * @return A {@link HttpGet} object
      */
     public HttpRequest getRequest() {
-        URIBuilder uriBuilder = new URIBuilder();
+        var uriBuilder = new URIBuilder();
         uriBuilder.setScheme("https");
         uriBuilder.setHost("api.steampowered.com");
         uriBuilder.setPath(this.path);
