@@ -3,7 +3,7 @@ package com.github.wannesvr.core.request.econ;
 import com.github.wannesvr.BaseTest;
 import com.github.wannesvr.core.model.item.ItemIconType;
 import com.github.wannesvr.testhelpers.UrlParamHelper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
