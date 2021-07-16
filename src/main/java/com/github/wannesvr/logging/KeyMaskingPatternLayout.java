@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class KeyMaskingPatternLayout extends PatternLayout {
 
     private String patternProperty;
-    private Pattern pattern;
+    private Pattern regex;
 
     public void setPatternProperty(String patternProperty) {
         if (patternProperty.isBlank()) {
@@ -16,13 +16,17 @@ public class KeyMaskingPatternLayout extends PatternLayout {
         }
 
         this.patternProperty = patternProperty;
-        this.pattern = Pattern.compile(this.patternProperty);
+        this.regex = Pattern.compile(this.patternProperty);
+    }
+
+    public void setPattern(String pattern) {
+        super.setPattern(pattern);
     }
 
     @Override
     public String doLayout(ILoggingEvent event) {
         var message = super.doLayout(event);
-        final var matcher = pattern.matcher(message);
+        final var matcher = regex.matcher(message);
 
         if (matcher.find()) {
             message = message.replaceFirst(patternProperty, "key=[apikey]&");
