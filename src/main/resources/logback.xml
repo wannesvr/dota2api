@@ -3,6 +3,12 @@
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
         </encoder>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="com.github.wannesvr.logging.KeyMaskingPatternLayout">
+                <patternProperty>key=(.*?)&amp;</patternProperty>
+                <pattern>%d [%thread] %-5level %logger{35} - %msg%n</pattern>
+            </layout>
+        </encoder>
     </appender>
 
     <root level="info">
