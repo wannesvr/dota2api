@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class MatchDetail {
     private boolean radiantWin;
 
     @JsonProperty("duration")
-    private Time duration;
+    private long duration;
 
     @JsonProperty("start_time")
     private Date startTime;
