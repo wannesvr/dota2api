@@ -20,7 +20,7 @@ public class MatchDetailPlayer {
     private int playerSlot;
 
     @JsonProperty("hero_id")
-    private byte heroId;
+    private int heroId;
 
     @JsonProperty("item_0")
     private int topLeftItem;

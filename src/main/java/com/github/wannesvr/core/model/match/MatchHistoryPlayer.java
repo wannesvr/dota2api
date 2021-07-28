@@ -14,6 +14,6 @@ public class MatchHistoryPlayer {
     private int playerSlot;
 
     @JsonProperty("hero_id")
-    private byte heroId;
+    private int heroId;
 
 }

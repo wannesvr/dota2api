@@ -14,7 +14,7 @@ public class LiveLeagueGameTeamPlayer {
     private int playerSlot;
 
     @JsonProperty("hero_id")
-    private byte heroId;
+    private int heroId;
 
     @JsonProperty("gold")
     private int gold;
