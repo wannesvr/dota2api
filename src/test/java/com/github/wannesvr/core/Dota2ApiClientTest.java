@@ -1,7 +1,6 @@
 package com.github.wannesvr.core;
 
 import com.github.wannesvr.core.config.Dota2ApiConfig;
-import com.github.wannesvr.core.exception.Dota2ApiException;
 import com.github.wannesvr.core.model.match.MatchHistory;
 import com.github.wannesvr.core.parser.Dota2ResponseParser;
 import com.github.wannesvr.core.request.AbstractSteamApiRequest;
@@ -64,7 +63,7 @@ public class Dota2ApiClientTest {
         try {
             client.send(null);
             fail();
-        } catch (Dota2ApiException e) {
+        } catch (NullPointerException e) {
             assertThat(e.getMessage(), is("Request cannot be null"));
         }
     }
@@ -77,7 +76,7 @@ public class Dota2ApiClientTest {
         try {
             client.send(new MatchDetailRequest.Builder(-1).build());
             fail();
-        } catch (Dota2ApiException e) {
+        } catch (NullPointerException e) {
             assertThat(e.getMessage(), is("API Key is null"));
         }
     }
