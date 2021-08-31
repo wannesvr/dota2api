@@ -54,20 +54,16 @@ public abstract class AbstractSteamApiRequest {
         uriBuilder.setHost("api.steampowered.com");
         uriBuilder.setPath(this.path);
 
-        try {
-            uriBuilder.addParameter("key", Objects.requireNonNull(Dota2ApiConfig.API_KEY, "API Key is null"));
-            uriBuilder.addParameter("format", Dota2ApiConfig.FORMAT);
-            uriBuilder.addParameter("language", Dota2ApiConfig.LANGUAGE);
-        } catch (NullPointerException e) {
-            throw new Dota2ApiException(e.getMessage());
-        }
+        uriBuilder.addParameter("key", Objects.requireNonNull(Dota2ApiConfig.API_KEY, "API Key is null"));
+        uriBuilder.addParameter("format", Dota2ApiConfig.FORMAT);
+        uriBuilder.addParameter("language", Dota2ApiConfig.LANGUAGE);
 
         this.urlParameters.forEach(kv -> uriBuilder.addParameter(kv.getName(), kv.getValue()));
 
         try {
             this.request.setURI(uriBuilder.build());
         } catch (URISyntaxException e) {
-            throw new Dota2ApiException("Invalid url format: " + e.getMessage());
+            throw new Dota2ApiException("Invalid url format", e);
         }
 
         return request;
