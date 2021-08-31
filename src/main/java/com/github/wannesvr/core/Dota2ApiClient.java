@@ -37,11 +37,7 @@ public class Dota2ApiClient {
      * @return an object of type T.
      */
     public <T> T send(AbstractSteamApiRequest request) throws Dota2ApiException {
-        try {
-            Objects.requireNonNull(request, "Request cannot be null");
-        } catch (NullPointerException e) {
-            throw new Dota2ApiException(e.getMessage());
-        }
+        Objects.requireNonNull(request, "Request cannot be null");
 
         try {
             var client = getHttpClient();
@@ -58,7 +54,7 @@ public class Dota2ApiClient {
             }
         } catch (IOException e) {
             log.warn("Couldn't connect to the Steam API: " + e.getMessage());
-            throw new Dota2ApiException(e.getMessage());
+            throw new Dota2ApiException("Unable to connect to the Steam API", e);
         }
     }
 
