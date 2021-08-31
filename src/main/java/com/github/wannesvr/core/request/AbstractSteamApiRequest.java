@@ -27,24 +27,45 @@ public abstract class AbstractSteamApiRequest {
         this.urlParameters = new ArrayList<>();
     }
 
+    /**
+     * Adds a parameter with a String value to the url.
+     * @param key name of the parameter
+     * @param value value of the parameter
+     */
     public void urlParam(String key, String value) {
         this.urlParameters.add(new BasicNameValuePair(key, value));
     }
 
+    /**
+     * Adds a parameter with a int value to the url.
+     * @param key name of the parameter
+     * @param value value of the parameter
+     */
     public void urlParam(String key, int value) {
         this.urlParameters.add(new BasicNameValuePair(key, String.valueOf(value)));
     }
 
+
+    /**
+     * Adds a parameter with a long value to the url.
+     * @param key name of the parameter
+     * @param value value of the parameter
+     */
     public void urlParam(String key, long value) {
         this.urlParameters.add(new BasicNameValuePair(key, String.valueOf(value)));
     }
 
+    /**
+     * Adds a parameter with a boolean value to the url.
+     * @param key name of the parameter
+     * @param value value of the parameter
+     */
     public void urlParam(String key, boolean value) {
         this.urlParameters.add(new BasicNameValuePair(key, value ? "1" : "0"));
     }
 
     /**
-     * Adds every {@see Parameter} and url to the {@link HttpGet}.
+     * Creates an {@link HttpRequest} for a certain api path with all parameters set.
      *
      * @return A {@link HttpGet} object
      */
