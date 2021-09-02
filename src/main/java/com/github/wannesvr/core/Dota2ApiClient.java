@@ -31,7 +31,8 @@ public class Dota2ApiClient {
     /**
      * Sends the request and returns the response if successful, if not it throws a {@link Dota2ApiException}.
      *
-     * @param request       the request to send
+     * @param <T> the response class, e.g. {@link com.github.wannesvr.core.model.hero.HeroList} for {@link com.github.wannesvr.core.request.econ.HeroesRequest}
+     * @param request the request to send
      * @return an object of type T.
      */
     public <T> T send(AbstractSteamApiRequest request) throws Dota2ApiException {
