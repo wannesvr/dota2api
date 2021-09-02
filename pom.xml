@@ -9,14 +9,16 @@
 
     <name>Dota2ApiWrapper</name>
     <description>Wrapper for the Dota 2 API</description>
+
     <url>https://github.com/wannesvr/dota2api</url>
 
-    <properties>
-        <maven.compiler.release>11</maven.compiler.release>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <developers>
+        <developer>
+            <name>Wannes Van Regenmortel</name>
+            <email>wannesvr.infsup@gmail.com</email>
+            <organizationUrl>https://github.com/wannesvr</organizationUrl>
+        </developer>
+    </developers>
 
     <licenses>
         <license>
@@ -24,6 +26,13 @@
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
+
+    <properties>
+        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <scm>
         <connection>scm:git:git://github.com/wannesvr/dota2api.git</connection>
