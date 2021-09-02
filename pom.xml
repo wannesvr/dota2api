@@ -4,7 +4,7 @@
 
     <groupId>io.github.wannesvr</groupId>
     <artifactId>Dota2ApiWrapper</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>Dota2ApiWrapper</name>
@@ -38,7 +38,7 @@
         <connection>scm:git:git://github.com/wannesvr/dota2api.git</connection>
         <developerConnection>scm:git:git@github.com:wannesvr/dota2api.git</developerConnection>
         <url>https://www.github.com/wannesvr/dota2api</url>
-        <tag>1.0.1</tag>
+        <tag>1.0.0</tag>
     </scm>
 
     <dependencyManagement>
