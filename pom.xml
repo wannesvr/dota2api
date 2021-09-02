@@ -6,7 +6,7 @@
 
     <groupId>io.github.wannesvr</groupId>
     <artifactId>Dota2ApiWrapper</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Dota2ApiWrapper</name>
@@ -26,6 +26,11 @@
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
+
+    <scm>
+        <developerConnection>scm:git:ssh://git@github.com:wannesvr/dota2api.git</developerConnection>
+        <url>https://www.github.com/wannesvr/dota2api</url>
+    </scm>
 
     <dependencyManagement>
         <dependencies>
@@ -165,26 +170,6 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <finalName>${project.name}-${project.version}</finalName>
-                    <appendAssemblyId>false</appendAssemblyId>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
             </plugin>
@@ -193,6 +178,12 @@
 
     <profiles>
         <profile>
+            <id>snapshot</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
             <id>release</id>
             <activation>
                 <property>
@@ -200,6 +191,9 @@
                     <value>true</value>
                 </property>
             </activation>
+            <properties>
+                <jar.finalName>${project.name}-${project.version}</jar.finalName>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -251,6 +245,17 @@
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.7</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
