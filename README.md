@@ -25,3 +25,9 @@ class Example {
     }
 }
 ```
+
+# Changelog
+
+## 2.0.0
+
+- Changed the datatype of start_time for `MatchDetail` and `MatchHistoryDetail` to `Instant`.
