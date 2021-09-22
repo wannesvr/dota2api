@@ -16,6 +16,7 @@ public class Dota2JsonResponseParser implements Dota2ResponseParser {
 
     public Dota2JsonResponseParser() {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.findAndRegisterModules();
     }
 
     /**

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -17,7 +17,7 @@ public class MatchHistoryDetail {
     private long matchSequenceNumber;
 
     @JsonProperty("start_time")
-    private Date startTime;
+    private Instant startTime;
 
     @JsonProperty("lobby_type")
     private LobbyType lobbyType;

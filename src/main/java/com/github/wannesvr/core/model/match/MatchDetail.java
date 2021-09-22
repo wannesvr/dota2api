@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -26,7 +26,7 @@ public class MatchDetail {
     private long duration;
 
     @JsonProperty("start_time")
-    private Date startTime;
+    private Instant startTime;
 
     @JsonProperty("match_seq_num")
     private long matchSequenceNumber;
