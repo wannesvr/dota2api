@@ -7,10 +7,10 @@ Using the wrapper is very easy as seen in the example below.
 Create a client, create a request using the Builder and send it!
 ```java
 
-import com.github.wannesvr.com.github.wannesvr.core.config.*;
-import com.github.wannesvr.com.github.wannesvr.core.*;
-import com.github.wannesvr.com.github.wannesvr.core.request.*;
-import com.github.wannesvr.com.github.wannesvr.core.model.match.*;
+import com.github.wannesvr.core.config.*;
+import com.github.wannesvr.core.*;
+import com.github.wannesvr.request.*;
+import com.github.wannesvr.model.match.*;
 
 class Example {
     public static void main(String[] args){
